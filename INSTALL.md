@@ -109,11 +109,21 @@ gcloud auth activate-service-account --key-file=/path/to/key-file.json
 ```
 
 ## Download data
+
+Download from storage
 ```bash
 gcloud storage cp -r gs://tomasaftalion-pointbert/data .
+```
+Move to ./data in repo:
+```bash
+mv data/ModelNet40/modelnet40_train_8192pts_fps.dat PointGPT/data/ModelNet/modelnet40_normal_resampled
+mv data/ModelNet40/modelnet40_test_8192pts_fps.dat PointGPT/data/ModelNet/modelnet40_normal_resampled
+mv data/ShapeNet55/shapenet_pc PointGPT/data/ShapeNet55-34/
 ```
 
 ## Run
 ```bash
+CUDA_VISIBLE_DEVICES=0 python main.py --config cfgs/pretrain.yaml --exp_name run-001
+python main_vis.py --test --ckpts experiments/pretrain/cfgs/run-001/ckpt-last.pth --config cfgs/pretrain.yaml --exp_name run-001
 ```
 
