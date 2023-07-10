@@ -2,7 +2,21 @@
 
 Personal reminder notes for setting up in Ubuntu 20.04 (GCloud)
 
-## Tunneling to remote instance
+## Launch GPU instance
+
+```bash
+gcloud beta compute instances create pointgpt \
+--zone=us-central1-c \
+--machine-type=n1-highmem-8 \
+--accelerator type=nvidia-tesla-v100 \
+--boot-disk-size=50GB \
+--boot-disk-type=pd-ssd \
+--image-project=ubuntu-os-cloud \
+--image-family=ubuntu-2004-lts \
+--maintenance-policy=TERMINATE
+```
+
+## Tunneling
 
 ```bash
 gcloud compute ssh pointgpt -- -L 2222:localhost:22
@@ -10,6 +24,7 @@ gcloud compute ssh pointgpt -- -L 2222:localhost:22
 
 ```bash
 scp -P 2222 local.txt user@localhost:/home/user
+ssh -p 2222 user@localhost
 ```
 
 ## Clone repo
@@ -29,11 +44,18 @@ sudo ln -s /usr/bin/python3 /usr/bin/python
 curl https://raw.githubusercontent.com/GoogleCloudPlatform/compute-gpu-installation/main/linux/install_gpu_driver.py --output install_gpu_driver.py
 sudo python3 install_gpu_driver.py
 ```
+Check installation:
+
+```bash
+nvidia-smi
+```
 
 ## Install CUDA
 
 Use Cuda 11.7 from [toolkit archive](https://developer.nvidia.com/cuda-toolkit-archive).
 ```bash
+wget https://developer.download.nvidia.com/compute/cuda/11.7.1/local_installers/cuda_11.7.1_515.65.01_linux.run
+sudo sh cuda_11.7.1_515.65.01_linux.run
 ```
 Update environment
 ```bash
