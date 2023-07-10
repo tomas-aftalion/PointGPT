@@ -71,7 +71,7 @@ nvcc -V
 Torch 2.0 has cuda 11.7 by default
 
 ```bash
-pip install torch==2.0
+pip install torch==2.0 torchstat
 pip install -r requirements.txt
 ```
 
@@ -81,11 +81,11 @@ pip install --upgrade https://github.com/unlimblue/KNN_CUDA/releases/download/0.
 ```
 
 ## Install Ninja
+
 ```bash
 pip install ninja
 sudo apt-get install ninja-build
 ```
-
 
 ## Build extensions
 
@@ -114,3 +114,6 @@ gcloud storage cp -r gs://tomasaftalion-pointbert/data .
 ```
 
 ## Run
+```bash
+```
+
