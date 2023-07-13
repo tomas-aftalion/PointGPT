@@ -1,0 +1,15 @@
+data/ModelNet/modelnet40_normal_resampled/modelnet40_test_8192pts_fps.dat
+data/ModelNet/modelnet40_normal_resampled/modelnet40_train_8192pts_fps.dat
+data/ShapeNet55-34/shapenet_pc
+
+extensions/chamfer_dist/build
+extensions/chamfer_dist/chamfer.egg-info
+extensions/chamfer_dist/dist/chamfer-2.0.0-py3.8-linux-x86_64.egg
+
+extensions/emd/build
+extensions/emd/emd_ext.egg-info
+extensions/emd/dist/emd_ext-0.0.0-py3.8-linux-x86_64.egg
+
+__pycache__/
+experiments/
+vis/
