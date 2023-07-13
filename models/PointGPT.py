@@ -15,6 +15,8 @@ from models.GPT import GPT_extractor, GPT_generator
 import math
 from models.z_order import *
 
+from pytorch3d.ops import knn_points
+
 
 class Encoder(nn.Module):  # Embedding module
     def __init__(self, encoder_channel):
@@ -120,7 +122,8 @@ class Group(nn.Module):
         # fps the centers out
         center = misc.fps(xyz, self.num_group)  # B G 3
         # knn to get the neighborhood
-        _, idx = self.knn(xyz, center)  # B G M
+        #_, idx = self.knn(xyz, center)  # B G M
+        _, idx, _ = knn_points(center, xyz, K=self.group_size )  # B G M
         assert idx.size(1) == self.num_group
         assert idx.size(2) == self.group_size
         idx_base = torch.arange(
