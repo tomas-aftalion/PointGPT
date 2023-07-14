@@ -127,3 +127,11 @@ CUDA_VISIBLE_DEVICES=0 python main.py --config cfgs/pretrain.yaml --exp_name run
 python main_vis.py --test --ckpts experiments/pretrain/cfgs/run-001/ckpt-last.pth --config cfgs/pretrain.yaml --exp_name run-001
 ```
 
+## Install Pytorch3D
+```bash
+pip install "git+https://github.com/facebookresearch/pytorch3d.git"
+```
+or you can download the wheel direclty
+```bash
+https://dl.fbaipublicfiles.com/pytorch3d/packaging/wheels/py38_cu117_pyt200/download.html
+```
