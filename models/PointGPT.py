@@ -16,6 +16,7 @@ import math
 from models.z_order import *
 
 from pytorch3d.ops import knn_points
+from pytorch3d.loss import chamfer_distance
 
 
 class Encoder(nn.Module):  # Embedding module
@@ -442,8 +443,10 @@ class PointGPT(nn.Module):
 
         gt_points = neighborhood.reshape(
             B*(self.num_group), self.group_size, 3)
-        loss1 = self.loss_func_p1(generated_points, gt_points)
-        loss2 = self.loss_func_p2(generated_points, gt_points)
+        #loss1 = self.loss_func_p1(generated_points, gt_points)
+        #loss2 = self.loss_func_p2(generated_points, gt_points)
+        loss1, _ = chamfer_distance(generated_points, gt_points, norm=1, single_directional=False)
+        loss2, _ = chamfer_distance(generated_points, gt_points, norm=2, single_directional=False)
 
         if vis:  # visualization
             gt_points = gt_points.reshape(
